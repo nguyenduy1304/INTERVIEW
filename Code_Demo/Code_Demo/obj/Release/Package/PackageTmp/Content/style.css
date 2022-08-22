@@ -1,0 +1,247 @@
+html, body{
+	margin:0;
+	font-size: 100%;
+	font-family: 'Lato', sans-serif;
+	background: #fff;
+    
+}
+
+body a {
+	text-decoration:none;
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+
+a:hover{
+ text-decoration:none;
+}
+
+input[type="submit"]{
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+.system-message {
+    color: red;
+}
+.login {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+}
+.sign-in{
+    padding: 10px;
+}
+
+.sign-in a {
+    font-size: 16px;
+    color: #3f305d;
+    text-decoration: none;
+}
+.sign-in a:hover{
+    color: #FDA30E;	
+    text-decoration: underline;
+}
+
+.login input[type="text"] ,.login input[type="password"], input[type="email"] {
+    width: 450px;
+    padding: 10px;
+    font-weight: normal;
+    background: none;
+    border: 1px solid #000;
+    color: #8c8787;
+    outline: none;
+    font-size: 14px;
+    margin: 6px 0 17px 0px;
+}
+.login input[type="text"]:hover, .login input[type="password"]:hover, input[type="submit"]:hover, input[type="email"]:hover{
+    border: 1px solid #FDA30E;	
+}
+input[type="submit"]{
+    width: 300px;
+    line-height: 35px;
+    background: #f4c983;
+    color: #000;
+    font-weight: normal;
+    border: 1px solid #000;
+    outline: none;
+    font-size: 20px;
+    margin: 6px 0 17px 0px;
+    
+}
+input[type="submit"]:hover{
+    background: #FDA30E;
+}
+.login h3{
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+.sign-in a{
+    float: left;
+    padding: 10px;
+}
+.sign-in a:hover{
+    color: #FDA30E;
+}
+
+
+.menu-top{
+	background:rgb(129, 70, 224);
+    padding: 12px;
+}
+.navbar-nav > li {
+    margin: 0 15px 0 0;
+}
+.menu__list {
+	position: relative;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.menu__link {
+    color: #000;
+	font-size: 22pt;
+	font-weight: bold;
+	display: block;
+	padding: 16px;
+	cursor: pointer;
+
+}
+
+.menu__link:hover {
+	transform: scale(1.5);
+}
+.product-item{
+    padding: 10px;
+}
+.title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20pt;
+}
+.react{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    padding: 5px;
+}
+.button-like{
+    float: right;
+}
+
+.success {
+    width: 150px;
+    line-height: 40px;
+    text-align: center;
+    background: #f4c983;
+    color: #000;
+    font-weight: normal;
+    border: 1px solid #000;
+    outline: none;
+    font-size: 20px;
+    float: right;
+    margin-right: 15px;
+}
+
+    .success:hover {
+        background: #FDA30E;
+    }
+
+@media (max-width: 1080px){
+    .navbar-nav > li {
+        margin: 0 6px 0 0;
+    }
+}
+@media (max-width: 991px){
+    .navbar-nav > li {
+		margin: 0 5px 0 0;
+	}
+}
+@media (max-width: 767px){
+    .navbar-nav > li {
+		margin: 0 0px 0 0;
+		width: 100%;
+		text-align: center;
+	}
+}
+
+
+html {
+    height: 100%;
+}
+
+.loader {
+    position: absolute;
+    top: calc(50% - 32px);
+    left: calc(50% - 32px);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    perspective: 800px;
+}
+
+.inner {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+    .inner.one {
+        left: 0%;
+        top: 0%;
+        animation: rotate-one 1s linear infinite;
+        border-bottom: 3px solid #000;
+    }
+
+    .inner.two {
+        right: 0%;
+        top: 0%;
+        animation: rotate-two 1s linear infinite;
+        border-right: 3px solid #000;
+    }
+
+    .inner.three {
+        right: 0%;
+        bottom: 0%;
+        animation: rotate-three 1s linear infinite;
+        border-top: 3px solid #000;
+    }
+
+@keyframes rotate-one {
+    0% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-two {
+    0% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-three {
+    0% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+}

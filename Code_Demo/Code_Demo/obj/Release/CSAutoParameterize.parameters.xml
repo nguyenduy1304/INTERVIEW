@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Connection1-Web.config Connection String" description="Connection1 Connection String used in web.config by the application to access the database." defaultValue="data source=DESKTOP-TN5G4SD;initial catalog=DEMO;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\DEMO_INTERVIEW\\Code_Demo\\Code_Demo\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Connection1']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,57 @@
+﻿@using MSSQL;
+@using DBIO;
+
+@{
+    ViewBag.Title = "Home Page";
+    Account Logged = (Account)Session["login"];
+    string URL = String.Concat(Request.Url.Scheme, "://", Request.Url.Host, (Request.Url.IsDefaultPort ? "" : String.Concat(":", Request.Url.Port)));
+}
+
+
+<div class="product">
+    <div class="container" id="container">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-3 product-item">
+                <a class="title" href="#">@item.Title</a>
+                <div class="image">
+                    <img src="~/Content/Img/@item.PICTURE" alt="####" width="100%">
+                </div>
+                <div class="react">
+                    <b class="quantity-like">@item.React like</b>
+                    <a class="button-like" href="###"><i class="far fa-thumbs-up"></i></a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    function Like(id) {
+        ShowLoad();
+        var form = new FormData();
+        form.append('id', id);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "@URL/dashboard/activitylike", true);
+        xhr.timeout = 30000;
+        xhr.ontimeout = function () {
+            HideLoad();
+            alert('Hệ thống tạm thời không khả dụng! Thử lại sau ít phút.');
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var ms = JSON.parse(xhr.responseText);
+                if (ms.Data.status == "OK") {
+                    $('#activity-' + id + ' .likecount').html('<strong>' + ms.Data.count + '</strong>');
+                    $('#activity-' + id + ' .likeclick').html('Liked');
+                    $('#activity-' + id + ' .likeclick').attr('href', 'javascript:void(0);');
+                } else {
+                    alert(ms.Data.message);
+                }
+                HideLoad();
+            }
+        }
+        xhr.send(form);
+    }
+
+</script>

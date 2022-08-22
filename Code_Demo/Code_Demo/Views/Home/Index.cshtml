@@ -1,0 +1,65 @@
+﻿@using MSSQL;
+@using DBIO;
+
+@{
+    ViewBag.Title = "Home Page";
+    Account Logged = (Account)Session["login"];
+    string URL = String.Concat(Request.Url.Scheme, "://", Request.Url.Host, (Request.Url.IsDefaultPort ? "" : String.Concat(":", Request.Url.Port)));
+
+}
+
+
+<div class="product">
+    <div class="container" id="container">
+        @foreach (Product item in Model)
+        {
+
+            <div class="col-md-3 product-item">
+                <a class="title" href="#">@item.Title</a>
+                <div class="image">
+                    <img src="~/Content/Img/@item.PICTURE" alt="####" width="100%">
+                </div>
+                <div class="react">
+                    <b class="quantity-like">@item.React like</b>
+                    <a class="button-like" href="###"><i class="far fa-thumbs-up"></i></a>
+                </div>
+            </div>
+        }
+    </div>
+   
+        <a id="ReadMore" href="javascript:LoadMoreFeed()" class="btn btn-default btn-xs" style="margin:0 auto;display:block;width:100px;margin-bottom:50px;margin-top:20px">
+            Scroll load more
+        </a>
+   
+</div>
+<script>
+
+    //Window.addEventListener("scroll", function () { //các câu lệnh })
+
+    // XEM THÊM ACTIVITY
+    var page = 1;
+    function LoadMoreFeed() {
+        ShowLoad();
+        page += 1;
+        var form = new FormData();
+        form.append('page', page);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "@URL/Home/GetMoreProduct", true);
+        xhr.timeout = 30000;
+        xhr.ontimeout = function () {
+            HideLoad();
+            alert('Hệ thống tạm thời không khả dụng! Thử lại sau ít phút.');
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText;
+                if (response.substr(0, 2) == "ER") {
+                    alert(response);
+                }
+                HideLoad();
+            }
+        }
+            xhr.send(form);
+    }
+
+</script>

@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string URL = String.Concat(Request.Url.Scheme, "://", Request.Url.Host, (Request.Url.IsDefaultPort ? "" : String.Concat(":", Request.Url.Port)));
+}
+
+<div class="login">
+    <h1>Welcome to Big Star</h1>
+    <b class="system-message" id="message"></b>
+    <div class="sign-in">
+        <input type="text" id="txtUserName" placeholder="Username or Email" onfocus="this.placeholder = '';" onblur="if (this.placeholder == '') {this.placeholder = 'Username or Email';}">
+    </div>
+    <div class="sign-in">
+        <input type="password" id="txtPassword" placeholder="Password" onfocus="this.placeholder = '';" onblur="if (this.placeholder == '') {this.placeholder = 'Password';}">
+
+    </div>
+    <div class="sign-in">
+        <a href="#">Forgot password ?</a>
+        <a href="@URL/Home/CreareAccount" style="float:right">Click here to register an account </a>
+    </div>
+    <div class="sign-in">
+        <div id="btb-save" class="success" onclick="SignIn()">
+            Sign In
+        </div>
+    </div>
+</div>
+
+<script>
+    function SignIn() {
+        var username = document.getElementById('txtUserName').value;
+        var pwd = document.getElementById('txtPassword').value;
+
+        if (username.length == 0 || pwd.length == 0) {
+            alert("Chưa nhập đủ thông tin");
+        }
+        else {
+            ShowLoad();
+            var msob = document.getElementById('message');
+            msob.style.display = "none";
+            var form = new FormData();
+            form.append('username', username);
+            form.append('pwd', pwd);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "@URL/Home/Check", true);
+            xhr.timeout = 30000;
+            xhr.ontimeout = function () {
+                HideLoad();
+                alert('Hệ thống tạm thời không khả dụng! Thử lại sau ít phút.');
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    HideLoad();
+                    var rturn = "/Home/index";
+                    var ms = JSON.parse(xhr.responseText);
+                    if (ms.Data.status == "OK") {
+                        window.location = "@URL";
+                    } else {
+                        msob.innerHTML = ms.Data.message;
+                        msob.style.display = "block";
+                    }
+                }
+            }
+            xhr.send(form);
+        }
+    }
+</script>
+
